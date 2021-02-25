@@ -8,6 +8,7 @@ const Container = styled(motion.div)`
   background: white;
   padding: 3rem;
   box-shadow: 0px 2px 6px rgba(0,0,0,0.05);
+  margin: 0 2rem;
 `
 
 const ItemsContainer = styled.div`

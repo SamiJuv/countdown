@@ -5,6 +5,24 @@ import Countdown from './Countdown'
 import DateForm from './DateForm'
 import ResetButton from './ResetButton'
 
+import CurveImageUrl from '../assets/curve.svg'
+
+const CurveImage = styled.img`
+  position: absolute;
+  z-index: -1;
+  top: -30px;
+  right: -10px;
+  width: 1600px;
+  max-width: none;
+  height: 500px;
+  transform: rotate(180deg);
+
+  @media (max-width: 768px) {
+    width: 600px;
+    height: 250px;
+  }
+`
+
 const Container = styled.div`
   max-width: 960px;
   margin: 5rem auto;
@@ -31,6 +49,7 @@ const App = () => {
 
   return (
     <>
+      <CurveImage src={CurveImageUrl} />
       {countdownTimestamp && (
         <ResetButton resetDate={handleResetDate} />
       )}

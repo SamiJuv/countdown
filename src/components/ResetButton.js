@@ -16,10 +16,10 @@ const InfoText = styled(motion.div)`
   width: 0;
   height: 42px;
   padding-left: 0rem;
-  background-color: #ffbc2d;
+  background-color: rgba(255,255,255,0.3);
   border-top-left-radius: 21px;
   border-bottom-left-radius: 21px;
-  color: white;
+  color: #444444;
   overflow: hidden;
   white-space: nowrap;
 `
