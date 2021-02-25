@@ -44,7 +44,7 @@ const ItemLabel = styled.div`
 `
 
 const EndDate = styled.p`
-  margin: 4rem 0 0;
+  margin: 3rem 0 0;
   text-align: center;
   font-size: 1.5rem;
   font-weight: 700;

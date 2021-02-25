@@ -39,6 +39,12 @@ const H1 = styled.h1`
   }
 `
 
+const Info = styled.div`
+  position: fixed;
+  bottom: 1rem;
+  right: 2rem;
+`
+
 const App = () => {
   const [countdownTimestamp, setCountdownTimestamp] = useState(localStorage.getItem('countdownTimestamp'));
 
@@ -70,6 +76,9 @@ const App = () => {
           <DateForm handleSetDate={handleSetDate} />
         )}
       </Container>
+      <Info>
+        <a href="https://www.samijuv.fi">samijuv.fi</a>
+      </Info>
     </>
   );
 }
