@@ -9,6 +9,11 @@ const Container = styled(motion.div)`
   padding: 3rem;
   box-shadow: 0px 2px 6px rgba(0,0,0,0.05);
   margin: 0 2rem;
+
+  @media (max-width: 720px) {
+    padding: 1rem;
+    margin: 0 1rem;
+  }
 `
 
 const ItemsContainer = styled.div`
@@ -18,24 +23,44 @@ const ItemsContainer = styled.div`
   margin: 0 auto;
 `
 
-const Item = styled.div`
-  text-align: center;
-`
-
 const ItemVal = styled.div`
   font-weight: 700;
-  font-size: 36px;
+  font-size: 2rem;
+
+  @media (max-width: 720px) {
+    font-size: 1.4rem;
+  }
 `
 
 const ItemLabel = styled.div`
   font-weight: 700;
-  font-size: 22px;
+  font-size: 1.25rem;
+  padding-top: 0.1rem;
+  border-top: 3px solid #e85c68;
+
+  @media (max-width: 720px) {
+    font-size: 0.9rem;
+  }
 `
 
-const H3 = styled.h3`
+const EndDate = styled.p`
   margin: 4rem 0 0;
   text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+
+  @media (max-width: 720px) {
+    margin: 2rem 0 0;
+    font-size: 1rem;
+  }
 `
+
+const Item = ({ value, label }) => (
+  <div style={{ textAlign: 'center' }}>
+    <ItemVal>{value}</ItemVal>
+    <ItemLabel>{label}</ItemLabel>
+  </div>
+)
 
 const Countdown = ({ countdownTimestamp }) => {
   const [timeRemaining, setTimeRemaining] = useState(getTimeRemaining(countdownTimestamp));
@@ -70,30 +95,13 @@ const Countdown = ({ countdownTimestamp }) => {
       }}
     >
       <ItemsContainer>
-        <Item>
-          <ItemVal>
-            {timeRemaining.days}
-          </ItemVal>
-          <ItemLabel>days</ItemLabel>
-        </Item>
-
-        <Item>
-          <ItemVal>{timeRemaining.hours}</ItemVal>
-          <ItemLabel>hours</ItemLabel>
-        </Item>
-
-        <Item>
-          <ItemVal>{timeRemaining.minutes}</ItemVal>
-          <ItemLabel>minutes</ItemLabel>
-        </Item>
-
-        <Item>
-          <ItemVal>{timeRemaining.seconds}</ItemVal>
-          <ItemLabel>seconds</ItemLabel>
-        </Item>
+        <Item value={timeRemaining.days} label='days' />
+        <Item value={timeRemaining.hours} label='hours' />
+        <Item value={timeRemaining.minutes} label='minutes' />
+        <Item value={timeRemaining.seconds} label='seconds' />
       </ItemsContainer>
 
-      <H3>{endDateString}</H3>
+      <EndDate>{endDateString}</EndDate>
     </Container>
   )
 }

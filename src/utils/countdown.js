@@ -21,8 +21,7 @@ export const timestampToDateString = (timestamp) => {
     month: date.getMonth()+1,
     day: date.getDate(),
     hours: date.getHours(),
-    minutes: date.getMinutes(),
-    seconds: date.getSeconds(),
+    minutes: `${date.getMinutes()}`.padStart(2, '0')
   };
 
   return `${dateValues.day}.${dateValues.month}.${dateValues.year} ${dateValues.hours}:${dateValues.minutes}`;

@@ -31,6 +31,12 @@ const Container = styled.div`
 const H1 = styled.h1`
   margin: 0 0 4rem;
   text-align: center;
+  font-size: 2rem;
+
+  @media (max-width: 720px) {
+    font-size: 1.6rem;
+    margin: 0 0 2rem;
+  }
 `
 
 const App = () => {

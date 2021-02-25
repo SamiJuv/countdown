@@ -16,13 +16,27 @@ const Container = styled(motion.div)`
 
 const H2 = styled.h2`
   margin: 0 0 1rem;
+
+  @media (max-width: 720px) {
+    font-size: 1.2rem;
+  }
 `
 
 const Button = styled.button`
   display: block;
   border: 0;
-  background: #ffbc2d;
+  background-color: #e85c68;
   color: white;
+  margin-top: 1rem;
+  font-weight: 600;
+  padding: 0.3rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  box-shadow: 0px 1px 1px rgba(0,0,0,0.3);
+
+  &:hover {
+    background-color: #d1525c;
+  }
 `
 
 const DateForm = ({ handleSetDate }) => {

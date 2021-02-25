@@ -6,6 +6,11 @@ const ResetContainer = styled(motion.div)`
   top: 2rem;
   right: 3rem;
   cursor: pointer;
+
+  @media (max-width: 720px) {
+    top: 1rem;
+    right: 1.5rem;
+  }
 `
 
 const InfoText = styled(motion.div)`
@@ -16,12 +21,14 @@ const InfoText = styled(motion.div)`
   width: 0;
   height: 42px;
   padding-left: 0rem;
-  background-color: rgba(255,255,255,0.3);
+  background-color: rgba(255,255,255,0.4);
   border-top-left-radius: 21px;
   border-bottom-left-radius: 21px;
-  color: #444444;
+  color: #3a3a3a;
   overflow: hidden;
   white-space: nowrap;
+  font-size: 0.95rem;
+  font-weight: 700;
 `
 
 const Cross = styled(motion.div)`
@@ -31,8 +38,9 @@ const Cross = styled(motion.div)`
   justify-content: center;
   width: 42px;
   height: 42px;
-  background-color: #e3e3e3;
+  background-color: #fafafa;
   border-radius: 50%;
+  font-family: 'open sans';
 `
 
 const ResetButton = ({ resetDate }) => {
@@ -40,7 +48,7 @@ const ResetButton = ({ resetDate }) => {
 
   const animateShowInfo = () => {
     infoControls.start({
-      width: '185px',
+      width: '192px',
       paddingLeft: '1rem',
       transition: {
         duration: 0.3
