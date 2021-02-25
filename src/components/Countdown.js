@@ -13,6 +13,8 @@ const Container = styled(motion.div)`
 const ItemsContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  max-width: 500px;
+  margin: 0 auto;
 `
 
 const Item = styled.div`
