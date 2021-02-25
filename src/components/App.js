@@ -7,37 +7,41 @@ import ResetButton from './ResetButton'
 
 const Container = styled.div`
   max-width: 960px;
-  margin: 0 auto;
+  margin: 5rem auto;
+`
+
+const H1 = styled.h1`
+  margin: 0 0 4rem;
+  text-align: center;
 `
 
 const App = () => {
-  const [countdownDate, setCountdownDate] = useState(localStorage.getItem('countdownDate'));
-  console.log(countdownDate);
+  const [countdownTimestamp, setCountdownTimestamp] = useState(localStorage.getItem('countdownTimestamp'));
 
   const handleSetDate = (date) => {
-    const timestamp = date.getTime();
-    localStorage.setItem('countdownDate', timestamp);
-    setCountdownDate(timestamp);
+    const timestamp = (date.getTime() / 1000);
+    localStorage.setItem('countdownTimestamp', timestamp);
+    setCountdownTimestamp(timestamp);
   }
 
   const handleResetDate = () => {
     localStorage.clear();
-    setCountdownDate(null);
+    setCountdownTimestamp(null);
   }
 
   return (
     <>
-      {countdownDate && (
+      {countdownTimestamp && (
         <ResetButton resetDate={handleResetDate} />
       )}
       <Container>
         <header>
-          <h1>Simple countdown timer</h1>
+          <H1>Simple countdown timer</H1>
         </header>
-        {countdownDate && (
-          <Countdown countdownDate={countdownDate} />
+        {countdownTimestamp && (
+          <Countdown countdownTimestamp={countdownTimestamp} />
         )}
-        {!countdownDate && (
+        {!countdownTimestamp && (
           <DateForm handleSetDate={handleSetDate} />
         )}
       </Container>
