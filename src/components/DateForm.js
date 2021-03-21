@@ -14,12 +14,9 @@ const Container = styled(motion.div)`
   box-shadow: 0px 2px 6px rgba(0,0,0,0.05);
 `
 
-const H2 = styled.h2`
-  margin: 0 0 1rem;
-
-  @media (max-width: 720px) {
-    font-size: 1.2rem;
-  }
+const Label = styled.label`
+  display: block;
+  font-weight: 700;
 `
 
 const Button = styled.button`
@@ -41,6 +38,7 @@ const Button = styled.button`
 
 const DateForm = ({ handleSetDate }) => {
   const [date, setDate] = useState(new Date());
+  const [title, setTitle] = useState('');
 
   return (
     <Container
@@ -63,14 +61,19 @@ const DateForm = ({ handleSetDate }) => {
         }
       }}
     >
-      <H2>Select end date</H2>
-      <DatePicker 
-        selected={date}
-        onChange={date => setDate(date)}
-        showTimeSelect
-        dateFormat='Pp'
-      />
-      <Button onClick={() => handleSetDate(date)}>Save</Button>
+      <form>
+        <Label htmlFof='title'>Countdown title</Label>
+        <input type='text' name='title' onChange={(e) => setTitle(e.target.value)} />
+      
+        <Label>End date</Label>
+        <DatePicker 
+          selected={date}
+          onChange={date => setDate(date)}
+          showTimeSelect
+          dateFormat='Pp'
+        />
+      </form>
+      <Button onClick={() => handleSetDate(date, title)}>Save</Button>
     </Container>
   )
 }

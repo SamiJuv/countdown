@@ -47,10 +47,12 @@ const Info = styled.div`
 
 const App = () => {
   const [countdownTimestamp, setCountdownTimestamp] = useState(localStorage.getItem('countdownTimestamp'));
+  const title = localStorage.getItem('countdownTitle');
 
-  const handleSetDate = (date) => {
+  const handleSetDate = (date, title) => {
     const timestamp = (date.getTime() / 1000);
     localStorage.setItem('countdownTimestamp', timestamp);
+    localStorage.setItem('countdownTitle', title);
     setCountdownTimestamp(timestamp);
   }
 
@@ -67,7 +69,12 @@ const App = () => {
       )}
       <Container>
         <header>
-          <H1>Simple countdown timer</H1>
+          {title && (
+            <H1>{title}</H1>
+          )}
+          {!title && (
+            <H1>Simple countdown timer</H1>
+          )}
         </header>
         {countdownTimestamp && (
           <Countdown countdownTimestamp={countdownTimestamp} />
