@@ -40,11 +40,11 @@ const H1 = styled.h1`
   }
 `
 
-const Info = styled.div`
+/*const Info = styled.div`
   position: fixed;
   bottom: 1rem;
   right: 2rem;
-`
+`*/
 
 const App = () => {
   const queryParams = new URLSearchParams(useLocation().search);
