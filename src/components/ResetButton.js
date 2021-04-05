@@ -43,7 +43,7 @@ const Cross = styled(motion.div)`
   font-family: 'open sans';
 `
 
-const ResetButton = ({ resetDate }) => {
+const ResetButton = ({ reset }) => {
   const infoControls = useAnimation();
 
   const animateShowInfo = () => {
@@ -70,7 +70,7 @@ const ResetButton = ({ resetDate }) => {
     <ResetContainer
       onMouseEnter={() => animateShowInfo()}
       onMouseLeave={() => animateHideInfo()}
-      onClick={() => resetDate()}
+      onClick={() => reset()}
     >
       <InfoText
         initial={{

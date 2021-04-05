@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 import Countdown from './Countdown'
@@ -46,8 +47,14 @@ const Info = styled.div`
 `
 
 const App = () => {
-  const [countdownTimestamp, setCountdownTimestamp] = useState(localStorage.getItem('countdownTimestamp'));
-  const title = localStorage.getItem('countdownTitle');
+  const queryParams = new URLSearchParams(useLocation().search);
+  const history = useHistory();
+
+  const titleFromQuery = queryParams.get('title');
+  const timestampFromQuery = queryParams.get('timestamp');
+
+  const [countdownTimestamp, setCountdownTimestamp] = useState(timestampFromQuery ? timestampFromQuery : localStorage.getItem('countdownTimestamp'));
+  const countdownTitle = titleFromQuery ? titleFromQuery : localStorage.getItem('countdownTitle');
 
   const handleSetDate = (date, title) => {
     const timestamp = (date.getTime() / 1000);
@@ -56,23 +63,46 @@ const App = () => {
     setCountdownTimestamp(timestamp);
   }
 
-  const handleResetDate = () => {
+  const handleReset = () => {
     localStorage.clear();
     setCountdownTimestamp(null);
+
+    const params = new URLSearchParams()
+    params.delete('timestamp');
+    params.delete('title');
+    history.push({ search: params.toString() })
   }
+
+  useEffect(() => {
+    const params = new URLSearchParams()
+
+    if (countdownTimestamp) {
+      params.append('timestamp', countdownTimestamp)
+    } else {
+      params.delete('timestamp')
+    }
+    
+    if (countdownTitle) {
+      params.append('title', countdownTitle);
+    } else {
+      params.delete('title');
+    }
+
+    history.push({ search: params.toString() })
+  }, [countdownTimestamp, history, countdownTitle])
 
   return (
     <>
       <CurveImage src={CurveImageUrl} />
       {countdownTimestamp && (
-        <ResetButton resetDate={handleResetDate} />
+        <ResetButton reset={handleReset} />
       )}
       <Container>
         <header>
-          {title && (
-            <H1>{title}</H1>
+          {countdownTitle && (
+            <H1>{countdownTitle}</H1>
           )}
-          {!title && (
+          {!countdownTitle && (
             <H1>Simple countdown timer</H1>
           )}
         </header>
@@ -83,9 +113,9 @@ const App = () => {
           <DateForm handleSetDate={handleSetDate} />
         )}
       </Container>
-      <Info>
+      {/*<Info>
         <a href="https://www.samijuv.fi">samijuv.fi</a>
-      </Info>
+      </Info>*/}
     </>
   );
 }
